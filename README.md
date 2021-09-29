@@ -23,10 +23,10 @@ It downloads and compiles newest qemu (with aarch64) locally
 You can run locally compiled qemu with necessary files to run Rpi 3b+ in command line
 
 # Usage
-The distro.qcow2 file defaults to approx. It is 15GB, but may increase in size during use. You can take up to 4GB. To back up, just save the distro.qcow2 file.
+The distro.qcow2 file defaults to approx. It is 1.5GB, but may increase in size during use. You can take up to 4GB. To back up, just save the distro.qcow2 file.
 
 Attention! Running export.sh, if it existed before, overwrites the distro.qcow2 file. This will reset its contents so you get a newly installed system.
 
-After run you can ssh to rpi with ```ssh pi@localhost -p 2222```. You can safely run ```apt update``` and ```apt distupgrade```.
+After run you can ssh to rpi with ```ssh pi@localhost -p 2222```. You can safely run ```apt update``` and ```apt dist-upgrade```.
 
 When you go home, use ```sudo shutdown now``` to close Rpi with safe
