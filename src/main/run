@@ -4,4 +4,5 @@ echo "Copy files to export folder..."
 cp /build/distro.qcow2 /export
 cp /mnt/boot/bcm2710-rpi-3-b.dtb /export/pi3.dtb
 cp /mnt/boot/kernel8.img /export
+chmod 777 /export/*
 echo "Files copied"
