@@ -3,7 +3,7 @@ FROM ubuntu:20.04 as builder
 ARG BUILD_DIR=/build/
 
 ARG KERNEL_GIT=https://github.com/raspberrypi/linux.git
-ARG KERNEL_BRANCH=rpi-5.4.y
+ARG KERNEL_BRANCH=rpi-5.10.y
 
 ARG DISTRO_FILE=2021-05-07-raspios-buster-arm64-lite
 ARG DISTRO_IMG=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-05-28/$DISTRO_FILE.zip
