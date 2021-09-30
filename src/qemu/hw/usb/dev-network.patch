@@ -1,0 +1,4 @@
+1126,1128d1125
+<         fprintf(stderr, "usbnet: failed control transaction: "
+<                         "request 0x%x value 0x%x index 0x%x length 0x%x\n",
+<                         request, value, index, length);
