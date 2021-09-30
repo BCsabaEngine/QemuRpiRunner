@@ -35,7 +35,7 @@ RUN mkdir /mnt/root /mnt/boot \
  && guestfish add tmp/$DISTRO_FILE.img : run : mount /dev/sda1 / : copy-out / /mnt/boot : umount / : mount /dev/sda2 / : copy-out / /mnt/root
 
 RUN git clone --single-branch --branch $KERNEL_BRANCH $KERNEL_GIT $BUILD_DIR/linux/
-COPY src/.config $BUILD_DIR/linux/
+COPY src/rpi/.config $BUILD_DIR/linux/
 
 RUN make -C $BUILD_DIR/linux/ -j$BUILD_CORES Image modules dtbs
 
@@ -45,8 +45,8 @@ RUN cp $BUILD_DIR/linux/arch/arm64/boot/Image /mnt/boot/kernel8.img \
  && cp $BUILD_DIR/linux/arch/arm64/boot/dts/overlays/README /mnt/boot/overlays/ \
  && make -C $BUILD_DIR/linux/ INSTALL_MOD_PATH=/mnt/root modules_install
 
-COPY src/fstab /mnt/root/etc/
-COPY src/cmdline.txt /mnt/boot/
+COPY src/rpi/fstab /mnt/root/etc/
+COPY src/rpi/cmdline.txt /mnt/boot/
 RUN touch /mnt/boot/ssh
 
 RUN guestfish -N $BUILD_DIR/distro.img=bootroot:vfat:ext4:4G \
