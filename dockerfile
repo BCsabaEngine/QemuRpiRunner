@@ -34,7 +34,7 @@ RUN wget -nv -O /tmp/$DISTRO_FILE.zip $DISTRO_IMG \
 RUN mkdir /mnt/root /mnt/boot \
  && guestfish add tmp/$DISTRO_FILE.img : run : mount /dev/sda1 / : copy-out / /mnt/boot : umount / : mount /dev/sda2 / : copy-out / /mnt/root
 
-RUN git clone --single-branch --branch $KERNEL_BRANCH $KERNEL_GIT $BUILD_DIR/linux/
+RUN git clone --single-branch --branch $KERNEL_BRANCH --depth 1 $KERNEL_GIT $BUILD_DIR/linux/
 COPY src/rpi/.config $BUILD_DIR/linux/
 
 RUN make -C $BUILD_DIR/linux/ -j$BUILD_CORES Image modules dtbs
