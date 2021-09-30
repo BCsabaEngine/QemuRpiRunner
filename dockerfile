@@ -11,7 +11,6 @@ ARG DISTRO_IMG=https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspi
 ARG KERNEL=kernel8
 ARG ARCH=arm64
 ARG CROSS_COMPILE=aarch64-linux-gnu-
-ARG BUILD_CORES=3
 
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt-get update && apt install -y \
@@ -35,9 +34,9 @@ RUN mkdir /mnt/root /mnt/boot \
  && guestfish add tmp/$DISTRO_FILE.img : run : mount /dev/sda1 / : copy-out / /mnt/boot : umount / : mount /dev/sda2 / : copy-out / /mnt/root
 
 RUN git clone --single-branch --branch $KERNEL_BRANCH --depth 1 $KERNEL_GIT $BUILD_DIR/linux/
-COPY src/rpi/.config $BUILD_DIR/linux/
 
-RUN make -C $BUILD_DIR/linux/ -j$BUILD_CORES Image modules dtbs
+RUN make -C $BUILD_DIR/linux/ bcmrpi3_defconfig
+RUN make -C $BUILD_DIR/linux/ -j$(nproc) Image modules dtbs
 
 RUN cp $BUILD_DIR/linux/arch/arm64/boot/Image /mnt/boot/kernel8.img \
  && cp $BUILD_DIR/linux/arch/arm64/boot/dts/broadcom/*.dtb /mnt/boot/ \
