@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Starting Rpi 3b+..."
 ./qemu/build/qemu-system-aarch64 \
    -M raspi3b \
    -m 1G \
