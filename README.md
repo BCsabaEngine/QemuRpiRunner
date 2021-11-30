@@ -4,8 +4,8 @@ Running ARM8 Rpi 3b+ instance in qemu
 Follow these steps
 
 # 1.build.sh - run only once
-Creates a docker image from Ubuntu
-- download raspios buster arm64
+Creates a docker image from Ubuntu 20.04
+- download raspios **bullseye** (earlier buster) arm64
 - download RPI kernel source (5.10.y)
 - compile kernel
 - adapt fstab, cmdline, ssh
